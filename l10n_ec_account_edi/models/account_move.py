@@ -140,7 +140,9 @@ class AccountMove(models.Model):
                 )
             payment_data.append(payment_vals)
         if not payment_data:
-            l10n_ec_sri_payment = self.journal_id.l10n_ec_sri_payment_id
+            # JR - 07/27/2023 - use payment method from the invoice itself, instead of the journal Customer Invoice
+            # l10n_ec_sri_payment = self.journal_id.l10n_ec_sri_payment_id
+            l10n_ec_sri_payment = self.l10n_ec_sri_payment_id
             payment_vals = {
                 "name": l10n_ec_sri_payment.name,
                 "formaPago": l10n_ec_sri_payment.code,
